@@ -10,6 +10,6 @@ export class EnvelopesService {
   constructor(private http: HttpClient) {}
 
   obtenerEnvelopes(){
-    return this.http.get("http://localhost:4001/api/envelopes")
+    return this.http.get("http://localhost:4001/api/envelopes/")
   }
 }

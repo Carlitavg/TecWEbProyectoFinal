@@ -35,27 +35,19 @@
             </div>
     
             <!-- Fila 1 -->
-            <div class="row">
-                <div class="cell">1</div>
-                <div class="cell">food</div>
-                <div class="cell">100</div>
-                <div class="cell">0</div>
-                <div class="cell transactions">
-                    <div class="transaction-item">Transacción 1</div>
-                    <div class="transaction-item">Transacción 2</div>
+            @for(envelope of envelopes; track envelope.name){
+                
+                <div class="row">
+                    <div class="cell">{{envelope.id}}</div>
+                    <div class="cell">{{envelope.name}}</div>
+                    <div class="cell">{{envelope.limit}}</div>
+                    <div class="cell">{{envelope.spent}}</div>
+                    <div class="cell transactions">
+                        <div class="transaction-item">Transacción 1</div>
+                    </div>
                 </div>
-            </div>
-    
-            <!-- Fila 2 -->
-            <div class="row">
-                <div class="cell">2</div>
-                <div class="cell">transport</div>
-                <div class="cell">50</div>
-                <div class="cell">10</div>
-                <div class="cell transactions">
-                    <div class="transaction-item">Transacción 1</div>
-                </div>
-            </div>
+                
+            }
         </div>
         
 

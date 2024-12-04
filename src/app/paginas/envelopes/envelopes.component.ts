@@ -13,13 +13,13 @@ import { CommonModule } from '@angular/common';
 export class EnvelopesComponent implements OnInit, OnDestroy {
 
 
-  envelopes: any;
+  envelopes: any[] = [];
   constructor(private envelopesService: EnvelopesService){
 
   }
   obtenerEnvelopes(){
     this.envelopesService.obtenerEnvelopes().subscribe(
-      data => this.envelopes = data, 
+      (data: any) => { this.envelopes = data.envelopes}, 
       error => console.log(error),
       () => console.log("Fin")
       
