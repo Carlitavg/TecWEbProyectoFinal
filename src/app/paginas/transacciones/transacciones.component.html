@@ -1,0 +1,24 @@
+<div class="table">
+    <!-- Encabezados -->
+    <div class="header-row">
+      <div class="header">id</div>
+      <div class="header">id_envelope</div>
+      <div class="header">amount</div>
+      <div class="header">description</div>
+      <div class="header">date</div>
+    </div>
+  
+    <!-- Fila 1 -->
+    @for(transaccion of transactions; track transaccion.id){
+        
+        <div class="row">
+            <div class="cell">{{transaccion.id}}</div>
+            <div class="cell">{{transaccion.id_envelope}}</div>
+            <div class="cell">{{transaccion.amount}}</div>
+            <div class="cell">{{transaccion.description}}</div>
+            <div class="cell">{{transaccion.date}}</div>
+        </div>
+        
+    }
+  </div>
+  

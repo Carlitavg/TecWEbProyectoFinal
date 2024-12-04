@@ -1,60 +1,72 @@
 <!doctype html>
 <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title></title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-      <title>Envelopes</title>
-    </head>
-    <body>
-        <div class="fijo">
-            <div class="imagen_nubes">
-                <div class="logo1">
-                    <img src="Texto.png"/>
-                </div>
-            </div>
-            
+  <head>
+    <meta charset="utf-8">
+    <title>Envelopes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="fijo">
+      <div class="imagen_nubes">
+        <div class="logo1">
+          <img src="Texto.png"/>
         </div>
-     
-        <div class="button">
-            
-                <img src="botonCrear.png"/>
-            
-        </div>
+      </div>
+    </div>
 
+    <div class="button">
+      <img src="botonCrear.png"/>
+    </div>
+
+    <div class="table">
+      <!-- Encabezados -->
+      <div class="header-row">
+        <div class="header">id</div>
+        <div class="header">name</div>
+        <div class="header">limit</div>
+        <div class="header">spent</div>
+        <div class="header">transacciones</div>
+      </div>
+
+      <!-- Fila 1 -->
+      @for(envelope of envelopes; track envelope.name){
+        <div class="row">
+          <div class="cell">{{ envelope.id }}</div>
+          <div class="cell">{{ envelope.name }}</div>
+          <div class="cell">{{ envelope.limit }}</div>
+          <div class="cell">{{ envelope.spent }}</div>
+          <div class="cell transactions">
+            <button (click)="verTransacciones(envelope.id)">Ver transacciones</button>
+          </div>
+        </div>
+    }
+    </div>
+
+    <!-- Mostrar tabla de transacciones solo si showTransactions es true -->
+    <!-- Mostrar tabla de transacciones solo si showTransactions es true -->
+    @if (showTransactions) {
         <div class="table">
-            <!-- Encabezados -->
-            <div class="header-row">
-                <div class="header">id</div>
-                <div class="header">name</div>
-                <div class="header">limit</div>
-                <div class="header">spent</div>
-                <div class="header">transacciones</div>
+          <div class="header-row">
+            <div class="header">id</div>
+            <div class="header">id_envelope</div>
+            <div class="header">amount</div>
+            <div class="header">description</div>
+            <div class="header">date</div>
+          </div>
+  
+          <!-- Fila de transacciones -->
+          @for (transaction of transactions; track transaction.id) {
+            <div class="row">
+              <div class="cell">{{ transaction.id }}</div>
+              <div class="cell">{{ transaction.id_envelope }}</div>
+              <div class="cell">{{ transaction.amount }}</div>
+              <div class="cell">{{ transaction.description }}</div>
+              <div class="cell">{{ transaction.date }}</div>
             </div>
-    
-            <!-- Fila 1 -->
-            @for(envelope of envelopes; track envelope.name){
-                
-                <div class="row">
-                    <div class="cell">{{envelope.id}}</div>
-                    <div class="cell">{{envelope.name}}</div>
-                    <div class="cell">{{envelope.limit}}</div>
-                    <div class="cell">{{envelope.spent}}</div>
-                    <div class="cell transactions">
-                        <div class="transaction-item">Transacción 1</div>
-                    </div>
-                </div>
-                
-            }
+          }
         </div>
-        
-
-
-   
+      }
   </body>
 </html>
-<router-outlet>
-
-    

@@ -61,11 +61,16 @@
 }
 
 .button{
-    height: 90px;
-    width: auto;
+    
     align-items: center;
     padding-top: 100px;
     padding-bottom: 100px;
+    display: flex;
+    justify-content: center;
+}
+.button img{
+    height: 90px;
+    width: auto;
 }
 
 
