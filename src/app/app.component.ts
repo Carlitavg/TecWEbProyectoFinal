@@ -6,7 +6,7 @@ import { EnvelopesComponent } from './paginas/envelopes/envelopes.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, EnvelopesComponent],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

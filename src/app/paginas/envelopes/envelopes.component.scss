@@ -1,30 +1,4 @@
 
-.imagen_nubes{
-    width: 100%;
-    height: 100px;
-    background-image: url('/fondoNubes.png');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);/* desplazamientoX desplazamientoY difuminado tamaño color */
-    display: flex;
-    justify-content: center;
-    margin: 0;
-}
-.fijo{
-    position: fixed; /* Fija el menú en la pantalla */
-    top: 0; /* Lo coloca en la parte superior */
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    z-index: 1000;
-}
-.logo1 img{
-    
-    height: 90px;
-    width: auto;
-    align-items: center;
-    
-}
-
 .table {
     display: flex;
     flex-direction: column;
@@ -54,12 +28,6 @@
     flex-direction: column;
 }
 
-.transaction-item {
-    border: 1px solid black;
-    margin: 2px 0;
-    padding: 4px;
-}
-
 .button{
     
     align-items: center;
@@ -68,100 +36,21 @@
     display: flex;
     justify-content: center;
 }
-.button img{
-    height: 90px;
-    width: auto;
-}
 
-
-/* Modal */
-.modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* opaco */
-    z-index: 2000;
-}
-
-.modal-content {
-    background-color: #fcf5ed;
-    border-radius: 15px;
-    padding: 20px 40px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    width: 600px;
-    max-width: 90%;
-    text-align: center;
-    font-family: "Raleway", sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    color: #000000;
-    position: relative;
-}
-
-.modal .close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #7495a4;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.modal .close:hover {
-    color: #c9b9a9;
-}
-
-.modal h1 {
-    font-family: "Barlow Semi Condensed", sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #7495a4;
-}
-
-.modal p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 10px 0;
-}
-
-.modal-buttons {
+.transactions-list {
     margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.modal-buttons button {
-    font-family: "Raleway", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.modal-buttons button:nth-child(1) {
-    background-color: #7495a4;
-    color: #fcf5ed;
-}
-
-.modal-buttons button:nth-child(2) {
-    background-color: #c9b9a9;
-    color: #000000;
-}
-
-.modal-buttons button:hover {
-    transform: scale(1.05);
-    background-color: #ede3d7;
-    color: #000000;
-}
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .transactions-list h3 {
+    font-size: 20px;
+  }
+  
+  .transactions-list div {
+    margin: 5px 0;
+  }
+  
+  .transactions-list button {
+    margin-top: 10px;
+  }
