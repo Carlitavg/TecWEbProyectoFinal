@@ -1,82 +1,129 @@
-<div class="table">
-  <div class="header-row">
-    <div class="header">Id</div>
-    <div class="header">Name</div>
-    <div class="header">Limit</div>
-    <div class="header">Spent</div>
-    <div class="header">Transacciones</div>
-  </div>
-
-  <!-- Muestra cada envelope -->
-  @for(envelope of envelopes; track envelope.id) {
-    <div class="row">
-      <div class="cell">{{ envelope.id }}</div>
-      <div class="cell">{{ envelope.name }}</div>
-      <div class="cell">{{ envelope.limit }}</div>
-      <div class="cell">{{ envelope.spent }}</div>
-      <div class="cell transactions">
-        <!-- Botón para ver las transacciones -->
-        <button (click)="verTransacciones(envelope.id)">Ver Transacciones</button>
-        <button (click)="abrirModalTransaccion(envelope.id)">Crear Transacción</button>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Envelopes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="fijo">
+      <div class="imagen_nubes">
+        <div class="logo1">
+          <img src="Texto.png"/>
+        </div>
       </div>
     </div>
 
-    <!-- Mostrar las transacciones solo para el envelope seleccionado -->
-    @if(transaccionesVisible && idEnvelopeSeleccionado === envelope.id) {
-      <div class="transactions-table">
-        <h3>Transacciones</h3>
-        <div class="table">
-          <div class="header-row">
-            <div class="header">Id</div>
-            <div class="header">Amount</div>
-            <div class="header">Description</div>
-            <div class="header">Date</div>
+    <div class="button">
+      <img src="botonCrear.png"/>
+    </div>
+    <div class="table">
+      <div class="header-row">
+        <div class="header">Id</div>
+        <div class="header">Name</div>
+        <div class="header">Limit</div>
+        <div class="header">Spent</div>
+        <div class="header">Transacciones</div>
+      </div>
+    
+      <!-- Muestra cada envelope -->
+      @for(envelope of envelopes; track envelope.id) {
+        <div class="row">
+          <div class="cell">{{ envelope.id }}</div>
+          <div class="cell">{{ envelope.name }}</div>
+          <div class="cell">{{ envelope.limit }}</div>
+          <div class="cell">{{ envelope.spent }}</div>
+          <div class="cell transactions">
+            <!-- Botón para ver las transacciones -->
+            <button class="btn-transaccion" (click)="verTransacciones(envelope.id)">Ver Transacciones</button>
+            <button class="btn-transaccion" (click)="abrirModalTransaccion(envelope.id)">Crear Transacción</button>
           </div>
-          @for(transaccion of transacciones; track transaccion.id) {
-            <div class="row">
-              <div class="cell">{{ transaccion.id }}</div>
-              <div class="cell">{{ transaccion.amount }}</div>
-              <div class="cell">{{ transaccion.description }}</div>
-              <div class="cell">{{ transaccion.date }}</div>
-            </div>
-          }
         </div>
-        <button (click)="cerrarTransacciones()">Cerrar</button>
+    
+        <!-- Mostrar las transacciones solo para el envelope seleccionado -->
+        @if(transaccionesVisible && idEnvelopeSeleccionado === envelope.id) {
+          <div class="transactions-table">
+            <h3>Transacciones</h3>
+            <div class="table">
+              <div class="header-row">
+                <div class="header">Id</div>
+                <div class="header">Amount</div>
+                <div class="header">Description</div>
+                <div class="header">Date</div>
+              </div>
+              @for(transaccion of transacciones; track transaccion.id) {
+                <div class="row">
+                  <div class="cell">{{ transaccion.id }}</div>
+                  <div class="cell">{{ transaccion.amount }}</div>
+                  <div class="cell">{{ transaccion.description }}</div>
+                  <div class="cell">{{ transaccion.date }}</div>
+                </div>
+              }
+            </div>
+            <button (click)="cerrarTransacciones()">Cerrar</button>
+          </div>
+        }
+      }
+      
+    
+    </div>
+    
+    
+    <!-- Modal para crear transacción -->
+    @if(crearTransaccionModalVisible) {
+      <div class="modal">
+        <div class="modal-content">
+          <h3>Crear Nueva Transacción</h3>
+          <label for="amount">Monto:</label>
+          <input id="amount" type="number" (input)="onAmountChange($event)" placeholder="Monto de la transacción">
+          <label for="description">Descripción:</label>
+          <input id="description" type="text" (input)="onDescriptionChange($event)" placeholder="Descripción de la transacción">
+          <button (click)="crearTransaccion()">Crear</button>
+          <button (click)="cerrarModalTransaccion()">Cancelar</button>
+        </div>
+      </div>
+
+    }
+    <div class="row">
+      <div class="cell">101</div>
+      <div class="cell">Prueba 1</div>
+      <div class="cell">5000</div>
+      <div class="cell">2000</div>
+      <div class="cell transactions">
+        <button class="btn-transaccion">Ver Transacciones</button>
+        <button class="btn-transaccion">Crear Transacción</button>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="cell">102</div>
+      <div class="cell">Prueba 2</div>
+      <div class="cell">10000</div>
+      <div class="cell">3000</div>
+      <div class="cell transactions">
+        <button class="btn-transaccion">Ver Transacciones</button>
+        <button class="btn-transaccion">Crear Transacción</button>
+      </div>
+    </div>
+    
+    <!-- Botón para abrir el modal -->
+    <button (click)="abrirModal()">Crear Envelope</button>
+    
+    <!-- Modal para crear el envelope -->
+    @if(modalAbierto) {
+      <div class="modal">
+        <div class="modal-content">
+          <h3>Crear Nuevo Envelope</h3>
+          <label for="nombre">Nombre:</label>
+          <input id="nombre" type="text" (input)="onNombreChange($event)" placeholder="Nombre del envelope">
+          <label for="limite">Límite:</label>
+          <input id="limite" type="number" (input)="onLimiteChange($event)" placeholder="Límite del sobre">
+          <button (click)="crearEnvelope()">Crear</button>
+          <button (click)="cerrarModal()">Cancelar</button>
+        </div>
       </div>
     }
-  }
-
-</div>
-
-<!-- Modal para crear transacción -->
-@if(crearTransaccionModalVisible) {
-  <div class="modal">
-    <div class="modal-content">
-      <h3>Crear Nueva Transacción</h3>
-      <label for="amount">Monto:</label>
-      <input id="amount" type="number" (input)="onAmountChange($event)" placeholder="Monto de la transacción">
-      <label for="description">Descripción:</label>
-      <input id="description" type="text" (input)="onDescriptionChange($event)" placeholder="Descripción de la transacción">
-      <button (click)="crearTransaccion()">Crear</button>
-      <button (click)="cerrarModalTransaccion()">Cancelar</button>
-    </div>
-  </div>
-}
-
-<!-- Botón para abrir el modal -->
-<button (click)="abrirModal()">Crear Envelope</button>
-
-<!-- Modal para crear el envelope -->
-@if(modalAbierto) {
-  <div class="modal">
-    <div class="modal-content">
-      <h3>Crear Nuevo Envelope</h3>
-      <label for="nombre">Nombre:</label>
-      <input id="nombre" type="text" (input)="onNombreChange($event)" placeholder="Nombre del envelope">
-      <label for="limite">Límite:</label>
-      <input id="limite" type="number" (input)="onLimiteChange($event)" placeholder="Límite del sobre">
-      <button (click)="crearEnvelope()">Crear</button>
-      <button (click)="cerrarModal()">Cancelar</button>
-    </div>
-  </div>
-}
+  </body>
+</html>
