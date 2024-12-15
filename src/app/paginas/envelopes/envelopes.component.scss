@@ -1,140 +1,461 @@
-.imagen_nubes{
-  width: 100%;
-  height: 100px;
-  background-image: url('/fondoNubes.png');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);/* desplazamientoX desplazamientoY difuminado tamaño color */
-  display: flex;
-  justify-content: center;
+
+body {
   margin: 0;
+  padding: 0;
 }
-.fijo{
-  position: fixed; /* Fija el menú en la pantalla */
-  top: 0; /* Lo coloca en la parte superior */
-  width: 100%; /* Asegura que ocupe todo el ancho */
-  z-index: 1000;
-}
-.logo1 img{
-  
-  height: 90px;
-  width: auto;
+  ::selection {
+  background-color: #29dd0c; 
+  color: #000000;
+  }
+  .imagen1{
+  width: 100%;
+  height: 900px;
+  background-image: url('/fondoTope1.png');
+  background-size: cover; /* Asegura que la imagen cubra todo el área */
+  background-position: center;
+  background-attachment: fixed;
+  }
+  .opaco{
+  background-color: rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+  }
+  .header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding-top: 30px;
+  }
+  .nav{
+  display: flex;
+  gap: 40px;
+  padding-right: 120px;
+
+  }
+  .nav a{
+  color: white;
+  text-decoration: none;
+  font-size: 19px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  }
+ .nav a:hover{
+  color:#29dd0c;
+ }
   
+  .logo img{
+    width: auto;
+    height: 26px;
+    padding-left: 120px;
+  }
+  .Text{
+  width: 50%; /* Ocupa la mitad del ancho */
+  color: white;
+  font-family: "Poppins", serif;
+  font-size: 35px;
+  padding-left: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 200px;
+  
+  
+  }
+  .Text2{
+  padding-top: 10px;
+  margin: 0;
+  padding-bottom: 50px;
+  }
+
+.linea1 {
+  border: none;
+  height: 7px; 
+  background-color: #29dd0c; 
+  margin: 10px 0; 
+  width: 120px; 
+}
+.linea2 {
+  border: none;
+  height: 1px; 
+  background-color: #29dd0c; 
+  
+  width: 80%; 
+  justify-content: center;
+}
+.buttonX{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #7CFF6E; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #7CFF6E; /* Borde */
+    background-color: transparent; /* Fondo transparente */
+    
+}
+.buttonX:hover{
+  transform: scale(1.05);
+}
+.line2{
+  padding-top: 100px;
+}
+
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff; /* Fondo en tono maquillaje */
+  color: rgb(0, 0, 0);
+  padding: 10px 100px 0px 100px;/*arriba der abajo izq*/
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+}
+.footer-descrip, .footer-section {
+  flex: 1;
+  min-width: 200px;
+  margin: 20px;
+}
+
+  
+.footer-section + .footer-social {
+  order: 1;
+  min-width: 200px;
+  margin-top: 0;
+}
+
+.footer-social .social-icons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.footer-social img {
+  width: 24px;
+  height: 24px;
+}
+  
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+  opacity: 0.8;
+}
+.footer h3{
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 30px;
+}
+.footer p{
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+.footer-descrip img{
+  width: auto;
+  height: 23px;
+}
+.footer-descrip{
+  display: flex;
+  padding-top: 50px;
+  max-width: 50px;
+}
+.TablaEnvelopes
+{
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.TablaEnvelopes img{
+  width: 320px;
+}
+.linea3 {
+  border: none;
+  height: 1px; 
+  background-color: #29dd0c; 
+  
+  width: 80%; 
 }
 
 .table {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  border: 1px solid #ddd;
+  width: 90%;
 }
 
-.header-row, .row {
-  display: flex;
-}
-
-.cell, .header {
-  border: 1px solid black;
-  padding: 8px;
-  text-align: center;
-  flex: 1;
-}
-
-.header {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-.transactions {
+.titulo{
   display: flex;
   flex-direction: column;
-   gap: 10px; /* Cambia 10px por la cantidad de espacio deseada */
-}
-
-.transaction-item {
-  border: 1px solid black;
-  margin: 2px 0;
-  padding: 4px;
-}
-
-.button{
-  
   align-items: center;
-  padding-top: 100px;
-  padding-bottom: 100px;
+}
+
+.table-header{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+
+}
+.table-row{
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  
+}
+.table-header {
+    background-color: #29dd0c;
+    color: black;
+    font-weight: bold;
+    display: flex;
+  
+}
+
+.table-cell {
+    
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+}
+
+.table-row:hover {
+  background-color: #f1fac1;
+}
+.after{
+  height: 150px;
+  width: 100%;
   display: flex;
   justify-content: center;
-}
-.button img{
-  height: 90px;
-  width: auto;
+  align-items: center;
 }
 
 
-/* Modal */
-/* Estilo para el fondo del modal */
-.modal {
-  position: fixed;
+.btn-transaccion, .btn-crear_transaccion{
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #7CFF6E; /* Color del texto */
+  text-align: center;
+  text-decoration: none;
+  border: 1.5px solid #7CFF6E; /* Borde */
+  background-color: transparent; /* Fondo transparente */
+  background: linear-gradient(to right, #000000,#545454);
+  width: 145px;
+  cursor: pointer;
+}
+
+.btn-crear_transaccion:hover, .btn-transaccion:hover, .buttonCrearEnvelope:hover{
+  transform: scale(1.05);
+}
+.box_btn{
+  padding-top: 10px;
+}
+.fondo_modal{
+  position: fixed; /* El fondo cubre toda la pantalla */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  background: rgba(255, 255, 255, 0.7);/* Fondo oscuro semitransparente */
+  display: flex; /* Flexbox para centrar el modal */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  z-index: 1000;
+}
+
+.modal{
+  background-color: #000000;
+  width: 800px;
+  height: 400px;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra */
+  padding-bottom: 20px;/* Espaciado interno */
+  position: relative; /* Contexto para otros elementos internos */
+  
+}
+.tituloT{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tituloT img{
+  width: 400px;
+}
+
+.modal_cerrar{
+
+  position: absolute; /* Posición absoluta respecto al modal */
+  top: -20px; /* Sobresale 20px hacia arriba */
+  right: -20px; /* Sobresale 20px hacia la derecha */
+  line-height: 40px; /* Centra la X verticalmente */
+  cursor: pointer;
+  z-index: 10; /* Se asegura que esté por encima del modal */
+}
+.modal_cerrar img{
+  width: 45px;
+}
+.tableT {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  width: 90%;
+  overflow-y: auto;
+}
+.transacciones{
   display: flex;
   justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none; /* Hace que no sea clickeable */
-  transition: opacity 0.3s ease;
+  
+  height: 230px;
+}
+.buttonCrearEnvelope{
+  
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #7CFF6E; /* Color del texto */
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #7CFF6E; /* Borde */
+  background-color: transparent; /* Fondo transparente */
+  box-shadow: 0px 4px 15px rgb(212, 255, 152);
+
 }
 
-/* Cuando se activa el modal (usando #modal en el href) */
-:target {
-  opacity: 1;
-  pointer-events: auto; /* Permite la interacción */
-}
 
-/* Contenido del modal */
-.modal-content {
+.form-container {
   background-color: #fff;
   padding: 20px;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
   position: relative;
-  text-align: center;
 }
 
-/* Botón de cierre (X) */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
-  text-decoration: none;
+.h2Modar2 {
+  text-align: center;
   color: #333;
 }
 
-.close-btn:hover {
-  color: #f00;
-  cursor: pointer;
+.form-group {
+  margin-bottom: 15px;
 }
 
-.btn-transaccion {
-  background-color: #7495a4;
-  color: #ffffff;
-  padding: 10px 20px;
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #29dd0c;
+  color: black;
   border: none;
-  border-radius: 8px;
-  font-family: "Raleway", sans-serif;
-  font-size: 16px;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 16px;
+  box-shadow: 0px 2px 15px rgb(0, 0, 0.3);
 }
 
-.btn-transaccion:hover {
-  background-color: #c9b9a9;
-  color: #000000;
-  transform: scale(1.05);
+button:hover {
+  background-color: #30bb1b;
+  color: #f1fac1;
+}
+.contenedor_formEnvelope{
+  position: fixed; /* El fondo cubre toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(53, 53, 53, 0.9);/* Fondo oscuro semitransparente */
+  display: flex; /* Flexbox para centrar el modal */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  z-index: 1000;
+}
+
+.modal_cerrar2{
+  position: absolute; /* Se posiciona relativo al contenedor padre */
+  top: -20px; /* Ajusta la posición superior */
+  right: -20px; /* Ajusta la posición derecha */
+  cursor: pointer;
+  z-index: 10;
+}
+.modal_cerrar2 img{
+  width: 45px;
+}
+
+
+.form-containerT {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  position: relative;
+}
+
+.h2Modar3 {
+  text-align: center;
+  color: #333;
+}
+
+.contenedor_formTransaction{
+  position: fixed; /* El fondo cubre toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(53, 53, 53, 0.9);/* Fondo oscuro semitransparente */
+  display: flex; /* Flexbox para centrar el modal */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  z-index: 1000;
+}
+
+.modal_cerrar3{
+  position: absolute; /* Se posiciona relativo al contenedor padre */
+  top: -20px; /* Ajusta la posición superior */
+  right: -20px; /* Ajusta la posición derecha */
+  cursor: pointer;
+  z-index: 10;
+}
+.modal_cerrar3 img{
+  width: 45px;
+}
+.form-group2 {
+  margin-bottom: 15px;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="datetime-local"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+html {
+  scroll-behavior: smooth;
 }

@@ -6,124 +6,262 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
   </head>
   <body>
-    <div class="fijo">
-      <div class="imagen_nubes">
-        <div class="logo1">
-          <img src="Texto.png"/>
-        </div>
-      </div>
-    </div>
-
-    <div class="button">
-      <img src="botonCrear.png"/>
-    </div>
-    <div class="table">
-      <div class="header-row">
-        <div class="header">Id</div>
-        <div class="header">Name</div>
-        <div class="header">Limit</div>
-        <div class="header">Spent</div>
-        <div class="header">Transacciones</div>
-      </div>
-    
-      <!-- Muestra cada envelope -->
-      @for(envelope of envelopes; track envelope.id) {
-        <div class="row">
-          <div class="cell">{{ envelope.id }}</div>
-          <div class="cell">{{ envelope.name }}</div>
-          <div class="cell">{{ envelope.limit }}</div>
-          <div class="cell">{{ envelope.spent }}</div>
-          <div class="cell transactions">
-            <!-- Botón para ver las transacciones -->
-            <button class="btn-transaccion" (click)="verTransacciones(envelope.id)">Ver Transacciones</button>
-            <button class="btn-transaccion" (click)="abrirModalTransaccion(envelope.id)">Crear Transacción</button>
-          </div>
-        </div>
-    
-        <!-- Mostrar las transacciones solo para el envelope seleccionado -->
-        @if(transaccionesVisible && idEnvelopeSeleccionado === envelope.id) {
-          <div class="transactions-table">
-            <h3>Transacciones</h3>
-            <div class="table">
-              <div class="header-row">
-                <div class="header">Id</div>
-                <div class="header">Amount</div>
-                <div class="header">Description</div>
-                <div class="header">Date</div>
-              </div>
-              @for(transaccion of transacciones; track transaccion.id) {
-                <div class="row">
-                  <div class="cell">{{ transaccion.id }}</div>
-                  <div class="cell">{{ transaccion.amount }}</div>
-                  <div class="cell">{{ transaccion.description }}</div>
-                  <div class="cell">{{ transaccion.date }}</div>
+    <div class="imagen1" id="inicio">
+        <div class="opaco">
+            <header class="header">
+                <a routerLink="/envelopes" class="logo">
+                    <img src="/logo.png"/>
+                </a>
+                <nav class="nav">
+                    <a routerLink="/envelopes">Inicio</a>
+                    <a href="#Envelopes" (click)="scrollToSection($event, 'Envelopes')">Envelopes</a>
+                    <a href="#Contacto" (click)="scrollToSection($event, 'Contacto')">Contacto</a>
+  
+                </nav>
+            </header>
+            <div class="Text">
+                <hr class="linea1">
+                <!-- <h2 class="Text2">An Innovative Platform for Smart Financial Management.</h2> -->
+                <h2 class="Text2">Una plataforma innovadora para la gestión financiera inteligente.</h2>
+                <div class="buttonX">
+                  Saber más
                 </div>
-              }
             </div>
-            <button (click)="cerrarTransacciones()">Cerrar</button>
-          </div>
-        }
-      }
-      
-    
-    </div>
-    
-    
-    <!-- Modal para crear transacción -->
-    @if(crearTransaccionModalVisible) {
-      <div class="modal">
-        <div class="modal-content">
-          <h3>Crear Nueva Transacción</h3>
-          <label for="amount">Monto:</label>
-          <input id="amount" type="number" (input)="onAmountChange($event)" placeholder="Monto de la transacción">
-          <label for="description">Descripción:</label>
-          <input id="description" type="text" (input)="onDescriptionChange($event)" placeholder="Descripción de la transacción">
-          <button (click)="crearTransaccion()">Crear</button>
-          <button (click)="cerrarModalTransaccion()">Cancelar</button>
+            <div class="line2">
+              <hr class="linea2">
+            </div>
+            
         </div>
+    </div>
+
+
+    <div class="TablaEnvelopes" id="Envelopes">
+      <div class="titulo">
+        <img src="tituloEnvelopes.png" alt="">
+      </div>
+      
+      <div class="table">
+        <div class="table-header">
+            <div class="table-cell">Id</div>
+            <div class="table-cell">Name</div>
+            <div class="table-cell">Limit</div>
+            <div class="table-cell">Spent</div>
+            <div class="table-cell">Transacciones</div>
+        </div>
+        <div class="table-row">
+            <div class="table-cell">1</div>
+            <div class="table-cell">John Doe</div>
+            <div class="table-cell">$5000</div>
+            <div class="table-cell">$3000</div>
+            <div class="table-cell">
+              <!-- Botón para ver las transacciones -->
+              
+              <div class="box_btn1">
+                <div class="btn-transaccion" (click)="abrirModal()">Ver Transacciones</div>
+              </div>
+              <div class="box_btn">
+                <div class="btn-crear_transaccion" (click)="abrirModal3()">Crear Transacción</div>
+              </div>
+              
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="table-cell">2</div>
+            <div class="table-cell">Jane Smith</div>
+            <div class="table-cell">$7000</div>
+            <div class="table-cell">$4000</div>
+            <div class="table-cell">20</div>
+        </div>
+        <!-- Agrega más filas según sea necesario -->
       </div>
 
-    }
-    <div class="row">
-      <div class="cell">101</div>
-      <div class="cell">Prueba 1</div>
-      <div class="cell">5000</div>
-      <div class="cell">2000</div>
-      <div class="cell transactions">
-        <button class="btn-transaccion">Ver Transacciones</button>
-        <button class="btn-transaccion">Crear Transacción</button>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="cell">102</div>
-      <div class="cell">Prueba 2</div>
-      <div class="cell">10000</div>
-      <div class="cell">3000</div>
-      <div class="cell transactions">
-        <button class="btn-transaccion">Ver Transacciones</button>
-        <button class="btn-transaccion">Crear Transacción</button>
-      </div>
-    </div>
-    
-    <!-- Botón para abrir el modal -->
-    <button (click)="abrirModal()">Crear Envelope</button>
-    
-    <!-- Modal para crear el envelope -->
-    @if(modalAbierto) {
-      <div class="modal">
-        <div class="modal-content">
-          <h3>Crear Nuevo Envelope</h3>
-          <label for="nombre">Nombre:</label>
-          <input id="nombre" type="text" (input)="onNombreChange($event)" placeholder="Nombre del envelope">
-          <label for="limite">Límite:</label>
-          <input id="limite" type="number" (input)="onLimiteChange($event)" placeholder="Límite del sobre">
-          <button (click)="crearEnvelope()">Crear</button>
-          <button (click)="cerrarModal()">Cancelar</button>
+      
+      <div class="after">
+        <div class="buttonCrearEnvelope" (click)="abrirModal2()">
+          Crear Envelope
         </div>
       </div>
-    }
+    </div>
+
+    <div class="fondo_modal" *ngIf="modalVisible">
+      <div class="modal">
+        <div class="modal_cerrar" (click)="cerrarModal()">
+          <img src="x.png" alt="">
+        </div>
+        <div class="tituloT">
+          <img src="tituloT.png" alt="">
+        </div>
+        
+        <div class="transacciones">
+          <div class="tableT">
+            <div class="table-header">
+                <div class="table-cell">Id</div>
+                <div class="table-cell">Envelope Id</div>
+                <div class="table-cell">Amount</div>
+                <div class="table-cell">Description</div>
+                <div class="table-cell">Date</div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">1</div>
+                <div class="table-cell">John Doe</div>
+                <div class="table-cell">$5000</div>
+                <div class="table-cell">$3000</div>
+                <div class="table-cell">
+                  
+                  
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">2</div>
+                <div class="table-cell">Jane Smith</div>
+                <div class="table-cell">$7000</div>
+                <div class="table-cell">$4000</div>
+                <div class="table-cell">20</div>
+            </div>
+            <div class="table-row">
+              <div class="table-cell">2</div>
+              <div class="table-cell">Jane Smith</div>
+              <div class="table-cell">$7000</div>
+              <div class="table-cell">$4000</div>
+              <div class="table-cell">20</div>
+          </div>
+          <div class="table-row">
+            <div class="table-cell">2</div>
+            <div class="table-cell">Jane Smith</div>
+            <div class="table-cell">$7000</div>
+            <div class="table-cell">$4000</div>
+            <div class="table-cell">20</div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell">2</div>
+          <div class="table-cell">Jane Smith</div>
+          <div class="table-cell">$7000</div>
+          <div class="table-cell">$4000</div>
+          <div class="table-cell">20</div>
+      </div>
+            <!-- Agrega más filas según sea necesario -->
+          </div>
+    
+        </div>
+        <div class="crear_trans">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="contenedor_formEnvelope" *ngIf="modalVisible2">
+      
+      <div class="form-container">
+        <div class="modal_cerrar2" (click)="cerrarModal2()">
+          <img src="x.png" alt="">
+        </div>
+        <h2 class="h2Modar2">Crear Envelope</h2>
+        <div id="envelopeForm">
+          
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="limit">Limit</label>
+                <input type="number" id="limit" name="limit" placeholder="Enter the limit" required>
+            </div>
+            <div class="form-group">
+                <label for="spent">Spent</label>
+                <input type="number" id="spent" name="spent" placeholder="Enter the spent amount" required>
+            </div>
+            <button type="button" onclick="addEnvelope()">Crear Envelope</button>
+          </div>
+  
+      </div>
+    </div>
+    
+
+
+    <div class="contenedor_formTransaction" *ngIf="modalVisible3">
+      
+      <div class="form-containerT">
+        <div class="modal_cerrar3" (click)="cerrarModal3()">
+          <img src="x.png" alt="">
+        </div>
+        <h2 class="h2Modar3">Crear Transaccion</h2>
+        <div id="TransactionForm">
+          
+          <div class="form-group2">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" placeholder="Enter amount" required>
+          </div>
+          <div class="form-group2">
+              <label for="description">Description</label>
+              <input type="text" id="description" placeholder="Enter description" required>
+          </div>
+          <div class="form-group2">
+              <label for="dateTime">Date and Time</label>
+              <input type="datetime-local" id="dateTime" required>
+          </div>
+          <button type="button" onclick="addTransaction()">Añadir Transaccion</button>
+          </div>
+  
+      </div>
+    </div>
+
+    <footer class="footer" id="Contacto">
+        
+      <div class="footer-descrip">
+  
+          <a class="logoFooter" >
+            <a href="#inicio" (click)="scrollToSection($event, 'inicio')">
+              <img src="logo1.png"/>
+            </a>  
+            
+              <p>Gestiona tus envelopes y transacciones de manera eficiente. Organiza tu dinero, realiza pagos y alcanza tus metas financieras con herramientas diseñadas para simplificar tu vida.</p>
+          </a>
+          
+      </div>
+      <div class="footer-section">
+          <h3 class="text_footer">Contacto</h3>
+          <p>Teléfono: 929-242-6868</p>
+          <p>Email: csapinnovators.com</p>
+          <div class="footer-social">
+              <h3>Síguenos</h3>
+              <div class="social-icons">
+                <a href="https://www.facebook.com/" target="_blank"><img src="red2.png" alt=""></a>
+                <a href="https://x.com/?lang=es" target="_blank"><img src="red4.png" alt=""></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="red3.png" alt=""></a>
+                <a href="https://github.com/GCD418/EspaciosBolivia" target="_blank"><img src="red1.png" alt=""></a>
+            
+              </div>
+          </div>
+      </div>
+      
+      <div class="footer-section">
+          <h3>Ubicaciones</h3>
+          <p>CSAP Innovators Central<br>Avenida Principal, Ciudad, Código Postal</p>
+          <p>CSAP Innovators Boutique<br>Calle Secundaria, Ciudad, Código Postal</p>
+      </div>
+      <div class="footer-section">
+          <h3>Horario de Apertura</h3>
+          <p>Lunes .......... 08:00 - 20:00</p>
+          <p>Martes .......... 08:00 - 20:00</p>
+          <p>Miércoles .......... 08:00 - 20:00</p>
+          <p>Jueves .......... 08:00 - 20:00</p>
+          <p>Viernes .......... 08:00 - 20:00</p>
+          <p>Sábado .......... 10:00 - 18:00</p>
+          <p>Domingo .......... 10:00 - 18:00</p>
+      </div>
+      <div class="footer-bottom">
+          <p>Copyright © 2024 Tec Web | Creado por CSAP Innovators</p>
+      </div>
+    </footer>
+
+
+    
+
+    
   </body>
 </html>

@@ -1,19 +1,71 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EnvelopesService } from '../../services/envelopes.service';
 import { TransaccionesService } from '../../services/transacciones.service';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-envelopes',
   templateUrl: './envelopes.component.html',
-  styleUrls: ['./envelopes.component.scss']
+  styleUrls: ['./envelopes.component.scss'],
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, CommonModule],
 })
 export class EnvelopesComponent implements OnInit, OnDestroy {
+
+
+  // Propiedad para controlar la visibilidad del modal
+  modalVisible: boolean = false;
+
+  // Función para abrir el modal
+  abrirModal(): void {
+    this.modalVisible = true;
+  }
+
+  // Función para cerrar el modal
+  cerrarModal(): void {
+    this.modalVisible = false;
+  }
+
+
+  modalVisible2: boolean = false;
+
+  // Función para abrir el modal
+  abrirModal2(): void {
+    this.modalVisible2 = true;
+  }
+
+  // Función para cerrar el modal
+  cerrarModal2(): void {
+    this.modalVisible2 = false;
+  }
+
+
+  modalVisible3: boolean = false;
+
+  // Función para abrir el modal
+  abrirModal3(): void {
+    this.modalVisible3 = true;
+  }
+
+  // Función para cerrar el modal
+  cerrarModal3(): void {
+    this.modalVisible3 = false;
+  }
+
+
+  scrollToSection(event: Event, sectionId: string): void {
+    event.preventDefault(); // Evita el comportamiento por defecto del enlace
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
   envelopes: any[] = [];
   nuevoEnvelope = {
     name: '',
     limit: 0
   };
-  modalAbierto: boolean = false;
 
   transaccionesVisible: boolean = false;
   transacciones: any[] = [];
@@ -47,19 +99,12 @@ export class EnvelopesComponent implements OnInit, OnDestroy {
     this.nuevoEnvelope.limit = parseFloat(event.target.value);
   }
 
-  abrirModal() {
-    this.modalAbierto = true;
-  }
-
-  cerrarModal() {
-    this.modalAbierto = false;
-  }
+ 
 
   crearEnvelope() {
     this.envelopesService.crearEnvelope(this.nuevoEnvelope).subscribe(
       (data: any) => {
         this.envelopes.push(data);
-        this.cerrarModal();
       },
       error => console.log(error)
     );
