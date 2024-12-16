@@ -10,10 +10,10 @@ export class TransaccionesService {
   constructor(private http: HttpClient) {}
 
   obtenerTransacciones(idEnvelope: number): Observable<any> {
-    return this.http.get(`http://localhost:4001/api/envelopes/${idEnvelope}/transactions`);
+    return this.http.get(`https://api-tecweb-rmf1.onrender.com/api/envelopes/${idEnvelope}/transactions`);
   }
 
   crearTransaccion(idEnvelope: number, transaccion: any): Observable<any> {
-    return this.http.post(`http://localhost:4001/api/envelopes/${idEnvelope}/transactions`, transaccion);
+    return this.http.post(`https://api-tecweb-rmf1.onrender.com/api/envelopes/${idEnvelope}/transactions`, transaccion);
   }
 }
