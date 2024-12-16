@@ -25,8 +25,10 @@ export class EnvelopesComponent implements OnInit, OnDestroy {
   // Función para cerrar el modal
   cerrarModal(): void {
     this.modalVisible = false;
+    this.idEnvelopeSeleccionado = null;
   }
 
+  
 
   modalVisible2: boolean = false;
 
@@ -44,12 +46,14 @@ export class EnvelopesComponent implements OnInit, OnDestroy {
   modalVisible3: boolean = false;
 
   // Función para abrir el modal
-  abrirModal3(): void {
+  abrirModal3(idEnvelope: number): void {
+    this.idEnvelopeSeleccionado = idEnvelope;
     this.modalVisible3 = true;
   }
 
   // Función para cerrar el modal
   cerrarModal3(): void {
+    
     this.modalVisible3 = false;
   }
 
@@ -66,16 +70,26 @@ export class EnvelopesComponent implements OnInit, OnDestroy {
     name: '',
     limit: 0
   };
+  
 
-  transaccionesVisible: boolean = false;
   transacciones: any[] = [];
   idEnvelopeSeleccionado: number | null = null;
 
-  crearTransaccionModalVisible: boolean = false;
+
   nuevaTransaccion = {
     amount: 0,
     description: ''
   };
+
+
+  abrirModalTransaccion(idEnvelope: number) {
+    this.idEnvelopeSeleccionado = idEnvelope;
+    this.modalVisible3 = true;
+  }
+
+  cerrarModalTransaccion() {
+    this.modalVisible3 = false;
+  }
 
   constructor(
     private envelopesService: EnvelopesService,
@@ -98,43 +112,34 @@ export class EnvelopesComponent implements OnInit, OnDestroy {
   onLimiteChange(event: any): void {
     this.nuevoEnvelope.limit = parseFloat(event.target.value);
   }
-
- 
+  mensajeError: string = "";
 
   crearEnvelope() {
+    if (this.nuevoEnvelope.limit <= 0 || !this.nuevoEnvelope.name) {
+      this.mensajeError =("Por favor, complete todos los campos.");
+      return;
+    }
     this.envelopesService.crearEnvelope(this.nuevoEnvelope).subscribe(
       (data: any) => {
         this.envelopes.push(data);
+        this.cerrarModal2()
+        this.mensajeError = "";
       },
       error => console.log(error)
     );
   }
-
+  
   verTransacciones(idEnvelope: number) {
     this.idEnvelopeSeleccionado = idEnvelope;
     this.transaccionesService.obtenerTransacciones(idEnvelope).subscribe(
       (data: any) => {
         this.transacciones = data.transactions;
-        this.transaccionesVisible = true;
+        this.modalVisible = true;
       },
       error => console.log(error)
     );
   }
-
-  cerrarTransacciones() {
-    this.transaccionesVisible = false;
-    this.idEnvelopeSeleccionado = null;
-  }
-
-  abrirModalTransaccion(idEnvelope: number) {
-    this.idEnvelopeSeleccionado = idEnvelope;
-    this.crearTransaccionModalVisible = true;
-  }
-
-  cerrarModalTransaccion() {
-    this.crearTransaccionModalVisible = false;
-  }
-
+  
   onAmountChange(event: any): void {
     this.nuevaTransaccion.amount = parseFloat(event.target.value);
   }
@@ -143,37 +148,37 @@ export class EnvelopesComponent implements OnInit, OnDestroy {
     this.nuevaTransaccion.description = event.target.value;
   }
 
-  // Actualizamos el 'spent' después de crear la transacción
-  crearTransaccion() {
-    if (this.nuevaTransaccion.amount <= 0 || !this.nuevaTransaccion.description) {
-      console.log("Por favor, complete todos los campos.");
-      return;
-    }
-  
-    const transaccion = {
-      amount: this.nuevaTransaccion.amount,
-      description: this.nuevaTransaccion.description
-    };
-  
-    // Realizamos la solicitud POST para crear la transacción
-    this.transaccionesService.crearTransaccion(this.idEnvelopeSeleccionado!, transaccion).subscribe(
-      (data: any) => {
-        // Ahora, actualizamos el 'spent' de la transacción en el envelope correspondiente
-        const envelope = this.envelopes.find(e => e.id === this.idEnvelopeSeleccionado);
-        if (envelope) {
-          // Aseguramos que 'spent' sea un número y sumamos el amount
-          envelope.spent = parseFloat(envelope.spent.toString()) + parseFloat(this.nuevaTransaccion.amount.toString());
-          // Redondeamos el resultado a 2 decimales para evitar problemas de precisión
-          envelope.spent = Math.round(envelope.spent * 100) / 100;
-        }
-  
-        this.transacciones.push(data); // Agregar la transacción a la lista
-        this.cerrarModalTransaccion(); // Cerrar el modal
-        console.log("Transacción creada exitosamente.");
-      },
-      error => console.log(error)
-    );
+// Actualizamos el 'spent' después de crear la transacción
+crearTransaccion() {
+  if (this.nuevaTransaccion.amount <= 0 || !this.nuevaTransaccion.description) {
+    this.mensajeError =("Por favor, complete todos los campos.");
+    return;
   }
+
+  const transaccion = {
+    amount: this.nuevaTransaccion.amount,
+    description: this.nuevaTransaccion.description
+  };
+
+  // Realizamos la solicitud POST para crear la transacción
+  this.transaccionesService.crearTransaccion(this.idEnvelopeSeleccionado!, transaccion).subscribe(
+    (data: any) => {
+      // Ahora, actualizamos el 'spent' de la transacción en el envelope correspondiente
+      const envelope = this.envelopes.find(e => e.id === this.idEnvelopeSeleccionado);
+      if (envelope) {
+        // Aseguramos que 'spent' sea un número y sumamos el amount
+        envelope.spent = parseFloat(envelope.spent.toString()) + parseFloat(this.nuevaTransaccion.amount.toString());
+        // Redondeamos el resultado a 2 decimales para evitar problemas de precisión
+        envelope.spent = Math.round(envelope.spent * 100) / 100;
+      }
+
+      this.transacciones.push(data); // Agregar la transacción a la lista
+      this.cerrarModal3(); // Cerrar el modal
+      console.log("Transacción creada exitosamente.");
+    },
+    error => console.log(error)
+  );
+}
 
   ngOnInit(): void {
     this.obtenerEnvelopes();

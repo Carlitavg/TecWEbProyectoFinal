@@ -220,13 +220,16 @@ body {
   
 }
 
-.table-cell {
+
+.table-cell, .table-cell1 {
     
     flex: 1;
     padding: 15px;
     text-align: center;
 }
-
+.table-cell1{
+  max-width: 20px;
+}
 .table-row:hover {
   background-color: #f1fac1;
 }
@@ -329,6 +332,7 @@ body {
   background-color: transparent; /* Fondo transparente */
   box-shadow: 0px 4px 15px rgb(212, 255, 152);
 
+  cursor: pointer;
 }
 
 
@@ -458,4 +462,10 @@ input[type="datetime-local"] {
 }
 html {
   scroll-behavior: smooth;
+}
+
+.error-mensaje{
+  padding: 10px;
+  color:#295f21;
+  text-align: center;
 }

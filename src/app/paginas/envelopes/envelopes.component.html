@@ -53,14 +53,12 @@
             <div class="table-cell">Spent</div>
             <div class="table-cell">Transacciones</div>
         </div>
-        <div class="table-row">
+        <!-- <div class="table-row">
             <div class="table-cell">1</div>
             <div class="table-cell">John Doe</div>
             <div class="table-cell">$5000</div>
             <div class="table-cell">$3000</div>
             <div class="table-cell">
-              <!-- Botón para ver las transacciones -->
-              
               <div class="box_btn1">
                 <div class="btn-transaccion" (click)="abrirModal()">Ver Transacciones</div>
               </div>
@@ -69,15 +67,66 @@
               </div>
               
             </div>
-        </div>
-        <div class="table-row">
-            <div class="table-cell">2</div>
-            <div class="table-cell">Jane Smith</div>
-            <div class="table-cell">$7000</div>
-            <div class="table-cell">$4000</div>
-            <div class="table-cell">20</div>
-        </div>
-        <!-- Agrega más filas según sea necesario -->
+        </div> -->
+      @for(envelope of envelopes; track envelope.id) {
+          <div class="table-row">
+            <div class="table-cell">{{ envelope.id }}</div>
+            <div class="table-cell">{{ envelope.name }}</div>
+            <div class="table-cell">{{ envelope.limit }}</div>
+            <div class="table-cell">{{ envelope.spent }}</div>
+            <div class="table-cell">
+              <div class="box_btn1">
+                <div class="btn-transaccion" (click)="verTransacciones(envelope.id)">Ver Transacciones</div>
+              </div>
+              <div class="box_btn">
+                <div class="btn-crear_transaccion" (click)="abrirModal3(envelope.id)">Crear Transacción</div>
+              </div>
+            </div>
+          </div>
+
+        <!-- Mostrar las transacciones solo para el envelope seleccionado -->
+          @if(modalVisible && idEnvelopeSeleccionado === envelope.id) {
+            <div class="fondo_modal" *ngIf="modalVisible">
+              @if(modalVisible && idEnvelopeSeleccionado === envelope.id) { 
+              <div class="modal">
+                <div class="modal_cerrar" (click)="cerrarModal()">
+                  <img src="x.png" alt="">
+                </div>
+                <div class="tituloT">
+                  <img src="tituloT.png" alt="">
+                </div>
+               
+                <div class="transacciones">
+                  <div class="tableT">
+                    <div class="table-header">
+                        <div class="table-cell1">Id</div>
+                        <div class="table-cell">Amount</div>
+                        <div class="table-cell">Description</div>
+                        <div class="table-cell">Date</div>
+                    </div>
+                    @for(transaccion of transacciones; track transaccion.id) {
+                      <div class="table-row">
+                        <div class="table-cell1">{{ transaccion.id }}</div>
+                        <div class="table-cell">{{ transaccion.amount }}</div>
+                        <div class="table-cell">{{ transaccion.description }}</div>
+                        <div class="table-cell">{{ transaccion.date }}</div>
+                      </div>
+                    }
+                    
+                  </div>
+            
+                </div>
+                <div class="crear_trans">
+        
+                </div>
+              </div>
+             }
+            </div>
+          }
+
+
+      }
+        
       </div>
 
       
@@ -88,94 +137,34 @@
       </div>
     </div>
 
-    <div class="fondo_modal" *ngIf="modalVisible">
-      <div class="modal">
-        <div class="modal_cerrar" (click)="cerrarModal()">
-          <img src="x.png" alt="">
-        </div>
-        <div class="tituloT">
-          <img src="tituloT.png" alt="">
-        </div>
-        
-        <div class="transacciones">
-          <div class="tableT">
-            <div class="table-header">
-                <div class="table-cell">Id</div>
-                <div class="table-cell">Envelope Id</div>
-                <div class="table-cell">Amount</div>
-                <div class="table-cell">Description</div>
-                <div class="table-cell">Date</div>
-            </div>
-            <div class="table-row">
-                <div class="table-cell">1</div>
-                <div class="table-cell">John Doe</div>
-                <div class="table-cell">$5000</div>
-                <div class="table-cell">$3000</div>
-                <div class="table-cell">
-                  
-                  
-                </div>
-            </div>
-            <div class="table-row">
-                <div class="table-cell">2</div>
-                <div class="table-cell">Jane Smith</div>
-                <div class="table-cell">$7000</div>
-                <div class="table-cell">$4000</div>
-                <div class="table-cell">20</div>
-            </div>
-            <div class="table-row">
-              <div class="table-cell">2</div>
-              <div class="table-cell">Jane Smith</div>
-              <div class="table-cell">$7000</div>
-              <div class="table-cell">$4000</div>
-              <div class="table-cell">20</div>
-          </div>
-          <div class="table-row">
-            <div class="table-cell">2</div>
-            <div class="table-cell">Jane Smith</div>
-            <div class="table-cell">$7000</div>
-            <div class="table-cell">$4000</div>
-            <div class="table-cell">20</div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell">2</div>
-          <div class="table-cell">Jane Smith</div>
-          <div class="table-cell">$7000</div>
-          <div class="table-cell">$4000</div>
-          <div class="table-cell">20</div>
-      </div>
-            <!-- Agrega más filas según sea necesario -->
-          </div>
+
     
-        </div>
-        <div class="crear_trans">
 
-        </div>
-      </div>
-    </div>
 
+    
+     <!-- CREAR ENVELOPE -->
     <div class="contenedor_formEnvelope" *ngIf="modalVisible2">
       
       <div class="form-container">
         <div class="modal_cerrar2" (click)="cerrarModal2()">
           <img src="x.png" alt="">
         </div>
+       
         <h2 class="h2Modar2">Crear Envelope</h2>
         <div id="envelopeForm">
           
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <label for="name">Name</label> 
+                <input type="text" id="name" (input)="onNombreChange($event)" placeholder="Nombre del envelope">
             </div>
             <div class="form-group">
                 <label for="limit">Limit</label>
-                <input type="number" id="limit" name="limit" placeholder="Enter the limit" required>
+                <input type="number" id="limit"  (input)="onLimiteChange($event)" placeholder="Límite del sobre">
             </div>
-            <div class="form-group">
-                <label for="spent">Spent</label>
-                <input type="number" id="spent" name="spent" placeholder="Enter the spent amount" required>
+            <div *ngIf="mensajeError" class="error-mensaje">
+              {{ mensajeError }}
             </div>
-            <button type="button" onclick="addEnvelope()">Crear Envelope</button>
+            <button type="button" (click)="crearEnvelope()">Crear Envelope</button>
           </div>
   
       </div>
@@ -194,17 +183,16 @@
           
           <div class="form-group2">
             <label for="amount">Amount</label>
-            <input type="number" id="amount" placeholder="Enter amount" required>
+            <input type="number" id="amount" (input)="onAmountChange($event)" placeholder="Monto de la transacción">
           </div>
           <div class="form-group2">
               <label for="description">Description</label>
-              <input type="text" id="description" placeholder="Enter description" required>
+              <input type="text" id="description" (input)="onDescriptionChange($event)" placeholder="Descripción de la transacción">
           </div>
-          <div class="form-group2">
-              <label for="dateTime">Date and Time</label>
-              <input type="datetime-local" id="dateTime" required>
+          <div *ngIf="mensajeError" class="error-mensaje">
+            {{ mensajeError }}
           </div>
-          <button type="button" onclick="addTransaction()">Añadir Transaccion</button>
+          <button type="button" (click)="crearTransaccion()">Añadir Transaccion</button>
           </div>
   
       </div>
